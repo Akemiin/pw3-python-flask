@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THappy Kirby</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(to bottom, #ffe6f2, #ffffff);
+            text-align: center;
+            color: #6d4c41;
+        }
+
+        h1 {
+            background-color: #ff99cc;
+            color: white;
+            padding: 20px;
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+
+        hr {
+            border: none;
+            height: 3px;
+            width: 60%;
+            background-color: #d7a86e;
+            margin: 30px auto;
+            border-radius: 5px;
+        }
+
+        .card {
+            background-color: white;
+            width: 250px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(109, 76, 65, 0.2);
+            display: inline-block; /* Para os cards ficarem lado a lado se a tela for larga */
+            vertical-align: top;
+        }
+
+        /* Estilo para as fotos dos doces */
+        .foto-doce {
+            width: 100%;
+            height: 180px;
+            object-fit: cover; /* Corta a imagem para preencher o espaço sem distorcer */
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            color: #ff66b2;
+            margin: 10px 0;
+        }
+
+        .preco {
+            font-weight: bold;
+            color: #8b5e3c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Doces 🍬</h1>
+    <hr>
+
+    <div class="card">
+     
+        <img src="{{ url_for('static', filename='imagens/pudim.webp') }}" alt="Pudim" class="foto-doce">
+        <h2>Pudim</h2>
+        <p>Delicioso e cremoso!</p>
+        <p class="preco">R$ 3,50</p>
+        <button>Comprar agora</button>
+    </div>
+
+    <div class="card">
+        <img src="{{ url_for('static', filename='imagens/peti.jpg') }}" alt="Petit Gateau" class="foto-doce">
+        <h2>Beijinho</h2>
+        <p>Com coco fresquinho!</p>
+        <p class="preco">R$ 3,50</p>
+        <button>Comprar agora</button>
+    </div>
+
+</body>
+</html>
