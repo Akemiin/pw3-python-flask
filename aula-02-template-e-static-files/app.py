@@ -15,11 +15,22 @@ def home():
 
 @app.route('/games')
 def games():
-    return render_template('games.html')
+    # criando uma variável
+    titulo = "Silk song"
+    ano = 2025
+    categoria = "Metroidvania"
+    
+    jogadores = ["Eduardo", "Vitor", "André", "Caio"]
+    return render_template('games.html', titulo=titulo, ano=ano, categoria=categoria, jogadores=jogadores)
+
+
 
 @app.route('/consoles')
 def consoles():
-    return render_template('consoles.html')
+    
+    titulo = "Consoles"
+    consoles = ["switch", "Playstation5", "Xbox", "Pc"]
+    return render_template('consoles.html', titulo=titulo, consoles=consoles)
 # def serve para criar funções no pythone home é o nome da função
 
 
