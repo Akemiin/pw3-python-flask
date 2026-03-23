@@ -20,9 +20,23 @@ def games():
     ano = 2025
     categoria = "Metroidvania"
     
+    # Criando um objeto python (dicionário) para representar as propriedades de um jogo
+    
+    game = {
+        "titulo": "Minecraft",
+        "ano": 2012,
+        "categoria": "Sandbox"
+    }
+    
+    
     jogadores = ["Eduardo", "Vitor", "André", "Caio"]
-    return render_template('games.html', titulo=titulo, ano=ano, categoria=categoria, jogadores=jogadores)
-
+    return render_template('games.html',
+                           titulo=titulo,
+                           ano=ano, 
+                           categoria=categoria,
+                           jogadores=jogadores,
+                           game=game
+                           )
 
 
 @app.route('/consoles')
