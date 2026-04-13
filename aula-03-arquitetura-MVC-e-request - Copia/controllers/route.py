@@ -6,7 +6,7 @@ def init_app(app):
 
     listaGames = [{"titulo": "Minecraft", "ano": 2012, "categoria": "Sandbox"}]
     # A partir daqui virão as rotas
-# Criando a rota principal do site 
+    # Criando a rota principal do site 
     @app.route('/')
     def home():
         return render_template('index.html')

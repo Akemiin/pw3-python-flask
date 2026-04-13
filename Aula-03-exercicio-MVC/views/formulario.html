@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Doces</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(to bottom, #ffe6f2, #ffffff);
+    text-align: center;
+    color: #6d4c41;
+}
+
+h1 {
+    background-color: #ff99cc;
+    color: white;
+    padding: 25px;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    width: 85%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #ff85c1;
+    color: white;
+    border: none;
+    padding: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Cadastrar Doces 🍰</h1>
+
+<div class="container">
+    <form method="POST">
+
+        <input type="text" name="nome" placeholder="Nome do doce">
+        <textarea name="descricao" placeholder="Descrição"></textarea>
+        <input type="number" name="preco" step="0.01" placeholder="Preço">
+
+        <button type="submit">Cadastrar 💕</button>
+    </form>
+
+    <h2>Doces cadastrados:</h2>
+
+    {% for doce in listaDoces %}
+        <p>{{ doce.nome }} - R$ {{ doce.preco }}</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>
