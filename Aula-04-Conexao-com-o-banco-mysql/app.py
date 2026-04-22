@@ -20,6 +20,25 @@ route.init_app(app) # chamando a função init_app do route.py e passando o app 
 
 # Iniciando o servidor web
 if __name__ == '__main__':
+    #Passando os dados e criando a conexão com o banco de dados
+    connection = pymysql.connect(host='localhost',
+                                 user = 'root',
+                                 password='',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+
+#testando a conexão como banco de dados
+    try:
+        with connection.cursor() as cursor: #Cria o banco se ele não existir
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
+            print(f"Banco de dados '{DB_NAME}' criado ou já existe.")
+
+
+    except Exception as error:
+        print(f"Erro ao criar o banco de dados: {error}")
+    finally:
+        connection.close() #Fechando a conexão com o banco de dados
+
     app.run(debug=True) #Ligando modo de depuração, reinicia automático
 # .run inicia um servidor
 # verificando se o app.py for o arquivo principal, ele inicia o servidor
