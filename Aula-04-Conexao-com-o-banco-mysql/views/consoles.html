@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    
+    <h1>Consoles em destaque</h1>
+    <hr>
+    <p><a href="/">Voltar</a></p>
+      <H1>Consoles</H1>
+      <ol>{%
+        for consoles in consoles %}
+        <li>{{ consoles }}</li>
+        {% endfor %}
+      </ol>
+</main>
+
+{% endblock %}
