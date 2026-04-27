@@ -39,6 +39,11 @@ if __name__ == '__main__':
     finally:
         connection.close() #Fechando a conexão com o banco de dados
 
+    db.init_app(app) # Inicializando o banco de dados com o app Flask
+    with app.test_request_context():
+        db.create_all() # Criando as tabelas do banco de dados
+    
+
     app.run(debug=True) #Ligando modo de depuração, reinicia automático
 # .run inicia um servidor
 # verificando se o app.py for o arquivo principal, ele inicia o servidor
