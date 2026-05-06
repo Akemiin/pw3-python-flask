@@ -4,6 +4,8 @@ from flask import Flask, render_template
 #Render template renderiz as paginas HTML
 from controllers import route
 
+import pymysql # Importando o pymysql para criar a conexão com o banco de dados MySQL
+
 from models.database import db # Importando o banco de dados para criar as tabelas
 # Carregando o Flask em uma variável 
 # Declarando variável no Python
