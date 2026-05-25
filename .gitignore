@@ -1,0 +1,29 @@
+# Virtual Environments
+venv/
+env/
+ENV/
+.env
+venv.bak/
+venv-win/
+
+# Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# Database files (SQLite)
+instance/*.db
+*.sqlite
+
+# Flask and local configurations
+config.py
+local_settings.py
+
+# Logs and local files
+logs/
+*.log
+.coverage
+htmlcov/
+.pytest_cache/
