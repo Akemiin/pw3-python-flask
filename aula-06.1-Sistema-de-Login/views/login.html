@@ -9,9 +9,10 @@
         <div class="card-body">
             <form action="{{ url_for('login') }}" method="post">
                 <label>E-mail</label>
-                <input type="email" name="email" placeholder="Digite seu e-mail">
+                <input type="email" name="email" placeholder="Digite seu e-mail" required class="form-control">
                 <label>Senha</label>
-                <input type="password" name="senha" placeholder="Digite sua senha">
+                <input type="password" name="senha" placeholder="Digite sua senha" required class="form-control">
+                <br>
                 <button type="submit" class="btn btn-danger btn-block">Login</button>
             </form>
     </div>
