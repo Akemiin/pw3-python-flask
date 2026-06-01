@@ -1,8 +1,8 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
+from markupsafe import Markup
 from model.game import listar_games, adicionar_game
 from model.database import Game, Console, db, Usuario
 from werkzeug.security import generate_password_hash
-
 
 def init_app(app):
 
@@ -154,6 +154,9 @@ def init_app(app):
 
         return redirect(url_for('estoque_consoles'))
     
+    
+    # rota de cadastro de usuário
+    
     @app.route('/cadastro', methods=['GET', 'POST'])
     def cadastro():
         if request.method == 'POST':
@@ -162,21 +165,32 @@ def init_app(app):
             email = request.form['email']
             senha = request.form['senha']
             
-            # Gerar hash da senha (para segurança)
-            hashed_senha = generate_password_hash(senha, method='scrypt')
-
-            newConsole = Usuario(
-                email=email,
-                senha=hashed_senha
-            )
+            #validação para evitar dados duplicados(se jáa existe)
             
-            db.session.add(newConsole)
+            #buscando por email
+            usuario = Usuario.query.filter_by(email=email).first()
+            if usuario:
+                msg = Markup("Usuário já cadastrado, faça o <a href='/login'>login</a> ")
+                flash(msg.danger)
+                return redirect(url_for('cadastro'))
+                             
+            # Gerar hash da senha (para segurança)
+            senha_criptografada = generate_password_hash(senha, method='scrypt')
+
+            novo_usuario = Usuario(
+                email=email,
+                senha=senha_criptografada
+            )
+            db.session.add(novo_usuario)
             db.session.commit()
             
-            return redirect(url_for('login'))
+            msgSucess = Markup("Cadastro realizado com sucesso, faça o <a href='/login'>login</a> ")
+            flash(msgSucess, 'success')
+            return redirect(url_for('cadastro'))
         
         return render_template('cadastro.html')
     
     @app.route('/login', methods=['GET', 'POST'])
     def login():
-        return 'Bem-Vindo a login'
+        return render_template('login.html')
+    

@@ -15,6 +15,9 @@ app = Flask(__name__, template_folder='views')
 app.config['DATABASE_NAME'] = DB_NAME
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root@localhost/{DB_NAME}'
 
+#criando uma chave secreta(para flash mssg e sessões)
+app.config['SECRET_KEY'] = 'Meusegredo'
+
 # Inicializando rotas
 routes.init_app(app)
 

@@ -2,25 +2,17 @@
 
 {% block content %}
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% for category, message in messages %}
-    <div class="alert alert-{{ category }}">
-        {{ message }}
-    </div>
-{% endfor %}
-{% endwith %}
-
 <div class="container">
     <div class="card mt-4">
         <div class="card-header">
-            <h3>Cadastro de usuário</h3></div>
+            <h3>Login de usuário</h3></div>
         <div class="card-body">
-            <form action="{{ url_for('cadastro') }}" method="post">
+            <form action="{{ url_for('login') }}" method="post">
                 <label>E-mail</label>
                 <input type="email" name="email" placeholder="Digite seu e-mail">
                 <label>Senha</label>
                 <input type="password" name="senha" placeholder="Digite sua senha">
-                <button type="submit" class="btn btn-danger btn-block">Cadastrar</button>
+                <button type="submit" class="btn btn-danger btn-block">Login</button>
             </form>
     </div>
 </div>
