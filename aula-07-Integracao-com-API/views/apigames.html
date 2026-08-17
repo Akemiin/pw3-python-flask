@@ -14,7 +14,9 @@
                     <p>{{ jogo.genre }}</p>
                     <p>{{ jogo.platform }}</p>
 
-                    <a href="{{jogo.game_url}}" target="blank" class="btn-danger">Jogar</a>
+                    <a href="{{url_for('apigames', id=jogo.id)}}" class="btn btn-primary">Info</a>
+
+                    <a href="{{jogo.game_url}}" target="blank" class="btn btn-danger">Jogar</a>
                 </div>
             </div>
         </div>
