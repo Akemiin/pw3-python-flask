@@ -1,13 +1,13 @@
 # Importando o Flask para a aplicação
-from flask import render_template, request, redirect, url_for,redirect,flash,session
+from flask import render_template, request, redirect, url_for
 # Importando o Model de Games
 from models.database import Game, db, Console, Usuario
 # Importando a biblioteca Werkzeug
-from werkzeug.security import generate_password_hash, check_password_hash  # Permite gerar e verificar hash de senha
-# Importando a biblioteca URLLIB
-import urllib.request  # Permite enviar requisições para uma URL
-# Importando a biblioteca JSON
-import json  # Converte dados de dicionário para JSON e vice-versa
+from werkzeug.security import generate_password_hash
+# Importando a biblioteca URBLLIB
+import urllib.request #Permite enviar requisições para uma URL
+# Importando a biblioteca Json
+import json #Converte dados do dicionário para Json e vice versa
 
 # Criando a função principal para inicializar as rotas
 
@@ -126,7 +126,6 @@ def init_app(app):
             return redirect(url_for('estoque'))
         return render_template('editGame.html', game=game)
     # ROTA DE CADASTRO
-
     @app.route('/cadastro', methods=['GET', 'POST'])
     def cadastro():
         if request.method == 'POST':
@@ -142,43 +141,35 @@ def init_app(app):
             db.session.commit()
             return redirect(url_for('login'))
         return render_template('cadastro.html')
-
+    
     # ROTA DE LOGIN
     @app.route('/login')
     def login():
         return render_template('login.html')
-    
-    @app.route('/logout', methods=['GET', 'POST'])
-    def logout():
-        session.clear()  # Limpa a sessão do usuário
-        return redirect(url_for('home'))
 
-    # ROTA DE CONSUMO DA API
-    @app.route('/apigames', methods=['GET', 'POST'])
-    # Recebendo o id como parâmetro
-    @app.route('/apigames/<int:id>', methods=['GET', 'POST'])
+#   Rota de consumo da API
+    @app.route('/apigames', methods=['GET','POST'])
+    @app.route('/apigames/<int:id>', methods=['GET','POST'])
     def apigames(id=None):
         urlAPI = 'https://www.freetogame.com/api/games'
-        # Enviando uma REQUISIÇÃO para a API
+        #Enviando uma requisição para a API
         resposta = urllib.request.urlopen(urlAPI)
-        # Lendo os dados
+        #Lendo os dados
         dados = resposta.read()
-        # Convertando dados de JSON para DICIONÁRIO
+        #convertendo dados de JSON para o dicionário
         listaJogos = json.loads(dados)
-        # Verificando se a rota recebeu um id:
         if id:
             jogoInfo = []
-            # Buscando o jogo na lista
             for jogo in listaJogos:
-                if jogo['id'] == id:
+                if jogo['id'] ==id:
                     jogoInfo = jogo
-                    # Interrompendo o for
                     break
-            # Se o jogo for encontrado
+                
             if jogoInfo:
                 return render_template('gameinfo.html', jogoInfo=jogoInfo)
             else:
-                return f'Jogo com a ID {id} não foi encontrado.'
+                return f'jogo com a id {id} não foi encontrado'
         else:
-            # Renderizando a página e enviando a lista de jogos
-            return render_template('apigames.html', listaJogos=listaJogos)
+             
+            return render_template('apigames.html',
+            listaJogos=listaJogos)

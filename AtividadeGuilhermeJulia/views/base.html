@@ -13,7 +13,12 @@
 
 <body>
   <header>
-    <img src="{{url_for('static', filename='/imgs/thegames_logo.png')}}" alt="Logo" width="300px">
+    <img 
+      src="{{url_for('static', filename='imgs/ovw.avif')}}" 
+      alt="Logo"
+      class="w-100 rounded"
+      style="height: 20vmax; object-fit: cover; object-position: center -12vmax;"
+    />
   </header>
 
   <!-- AQUI VAI A NAVBAR -->
@@ -27,7 +32,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Início</a>
+            <a class="nav-link active" aria-current="page" href="{{url_for('home')}}" >Início</a>
           </li>
 
           <li class="nav-item">
@@ -35,15 +40,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('consoles')}}">Consoles</a>
-          </li>
-
-          <li class="nav-item">
             <a class="nav-link" href="{{url_for('cadgames')}}">Cadastrar jogo</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('estoque')}}">Estoque de jogos</a>
+            <a class="nav-link" href="{{url_for('apigames')}}">Catálogo de jogos</a>
           </li>
           
         </ul>
@@ -60,7 +61,7 @@
   <!-- Aqui irá o conteúdo principal do site -->
   {% endblock content %}
   <footer>
-    <p>&copy; 2026 - The Games - Todos os direitos reservados.</p>
+    <p>&copy; 2026 - Overwatch - Todos os direitos reservados.</p>
   </footer>
 </body>
 
