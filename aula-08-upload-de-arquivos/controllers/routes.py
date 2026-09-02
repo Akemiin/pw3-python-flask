@@ -242,18 +242,18 @@ def init_app(app):
         session.clear()
         return redirect(url_for('home'))
 
-@app.route('/galeria', methods=['GET', 'POST'])
-def galeria():
-    
-    FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg']
-    def arquivos_permitidos(filename):
-        return '.' in filename and filename.rsplit('.', 1)[1].lower() in FILE_TYPES
-    if request.method == 'POST':
-        file = request.files['file']
-        if not arquivos_permitidos(file.filename):
-            flash('Tipo de arquivo não permitido!', 'danger')
-        filename = str(uuid.uuid4()) 
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    
-    
-    return render_template('galeria.html')
+    @app.route('/galeria', methods=['GET', 'POST'])
+    def galeria():
+        
+        FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg']
+        def arquivos_permitidos(filename):
+            return '.' in filename and filename.rsplit('.', 1)[1].lower() in FILE_TYPES
+        if request.method == 'POST':
+            file = request.files['file']
+            if not arquivos_permitidos(file.filename):
+                flash('Tipo de arquivo não permitido!', 'danger')
+                return redirect(request.url)
+            filename = str(uuid.uuid4()) 
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('galeria'))
+        return render_template('galeria.html')
